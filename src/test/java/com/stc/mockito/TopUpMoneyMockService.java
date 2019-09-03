@@ -55,7 +55,7 @@ public class TopUpMoneyMockService {
 	
 	@Before
 	public void setup(){
-	    MockitoAnnotations.initMocks(this); //without this you will get NPE
+	    MockitoAnnotations.initMocks(this); 
 	}
 
 	@Test
