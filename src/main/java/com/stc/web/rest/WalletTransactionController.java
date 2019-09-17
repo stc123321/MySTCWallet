@@ -25,7 +25,7 @@ import io.swagger.annotations.ApiResponses;
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = "*")
-@Api(value="Wallet Transaction Controller", description="customer can be transfer, top-up and list all the transactions through this Controller. ")
+@Api(value = "Wallet Transaction Controller", description = "customer can be transfer, top-up and list all the transactions through this Controller. ")
 public class WalletTransactionController {
 
 	@Autowired
@@ -35,12 +35,10 @@ public class WalletTransactionController {
 	WalletTransactionRepo repo;
 
 	@ApiOperation(value = "View a list of available transaction for specefic customer", response = List.class)
-	@ApiResponses(value = {
-	    @ApiResponse(code = 200, message = "Successfully retrieved list"),
-	    @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
-	    @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-	    @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
-	})
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved list"),
+			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
 	@GetMapping(value = "/trans/{customerId}")
 	public List<WalletTransaction> getById(@PathVariable Long customerId) {
 		return repo.findByCustomerId(customerId);
@@ -52,8 +50,9 @@ public class WalletTransactionController {
 	}
 
 	@PutMapping(value = "/top_up_tran")
-	public void topUpMoney(@RequestBody TransactionForm obj) {
+	public int topUpMoney(@RequestBody TransactionForm obj) {
 		service.topUpMoney(obj);
+		return 1;
 	}
 
 	@PutMapping(value = "/transfer_to")

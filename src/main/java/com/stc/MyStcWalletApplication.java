@@ -21,7 +21,7 @@ public class MyStcWalletApplication {
 		SpringApplication.run(MyStcWalletApplication.class, args);
 	}
 }
-
+// to insert temporary data
 @Component
 class DemoCommandLineRunner implements CommandLineRunner {
 
